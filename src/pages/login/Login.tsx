@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Button from "../../components/ui/Button/Button";
+import Input from "../../components/ui/Input/Input";
 import Typography from "../../components/ui/Typography/Typography";
 import {
   ButtonSizesType,
@@ -7,6 +9,7 @@ import {
 import { TypographyVariantTypes } from "../../primitives/TypographyTypes";
 
 const Login = () => {
+  const [value, setValue] = useState("");
   return (
     <div>
       <Typography
@@ -17,7 +20,11 @@ const Login = () => {
         label="Login"
         variant={ButtonVariantsType.PrimaryOutline}
         size={ButtonSizesType.Big}
-        isDisabled
+      />
+      <Input
+        placeholder="Placeholder"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
       />
     </div>
   );

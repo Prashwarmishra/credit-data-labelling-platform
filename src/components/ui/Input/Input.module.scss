@@ -1,0 +1,51 @@
+@import "../../../styles/colors.scss";
+
+.root {
+  width: 100%;
+  position: relative;
+  padding-bottom: 16px;
+
+  .input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 20px;
+    // width: 100%;
+    background: $white;
+    border: 1px solid;
+    border-color: $textPlaceholder;
+    border-radius: 8px;
+    position: relative;
+    transition: border-color 300ms ease-in-out;
+
+    // & > :focus::placeholder {
+    //   color: transparent;
+    // }
+
+    input {
+      display: block;
+      outline: none;
+      max-width: 100%;
+      width: 100%;
+      height: 100%;
+      color: $textDefault;
+      font-size: 16px;
+      line-height: 20px;
+      background-color: transparent;
+    }
+
+    input::placeholder {
+      color: $textPlaceholder;
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    input::-webkit-input-placeholder {
+      color: $textPlaceholder;
+    }
+
+    input:focus {
+      border: none !important;
+    }
+  }
+}

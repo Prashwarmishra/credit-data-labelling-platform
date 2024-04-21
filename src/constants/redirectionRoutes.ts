@@ -1,7 +1,8 @@
 const REDIRECTION_ROUTES = {
-  login: "/",
-  details: "/details",
-  listing: "/listing",
+  login: "/login",
+  home: "/",
+  listing: "/details",
+  details: "/entity-details/:entityId",
 };
 
 export default REDIRECTION_ROUTES;

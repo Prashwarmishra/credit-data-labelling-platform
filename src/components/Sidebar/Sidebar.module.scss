@@ -1,0 +1,37 @@
+@import "/src/styles/colors.scss";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 60px;
+  height: 100vh;
+  background-color: $blue10;
+  box-sizing: border-box;
+
+  .pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .tab {
+      padding: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .activeTab {
+      background-color: $blue20;
+      padding: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  .actions {
+    .config {
+    }
+    .profile {
+    }
+  }
+}

@@ -1,14 +1,27 @@
-import { faPenNib } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import s from "./App.module.scss";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Details from "./pages/details/Details";
+import Error from "./pages/error/Error";
+import Listing from "./pages/listing/Listing";
+import Login from "./pages/login/Login";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Listing />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/details",
+    element: <Details />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+]);
 
 function App() {
-  return (
-    <div className={s.root}>
-      <div className={s.child} />
-      <FontAwesomeIcon icon={faPenNib} />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

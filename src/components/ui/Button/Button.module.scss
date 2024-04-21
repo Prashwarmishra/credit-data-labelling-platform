@@ -1,0 +1,79 @@
+@import "../../../styles/colors.scss";
+
+.root {
+  .btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 0 12px;
+    transition: all 0.2s ease-in-out;
+    width: fit-content;
+  }
+
+  .leftIcon {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .leftIcon:only-child {
+    margin-right: 0;
+  }
+
+  .rightIcon {
+    margin-left: 6px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rightIcon:only-child {
+    margin-left: 0;
+  }
+}
+
+.Big {
+  height: 48px;
+}
+
+.Small {
+  height: 32px;
+  border-radius: 4px !important;
+}
+
+.Primary {
+  color: $white;
+  background-color: $blue10;
+
+  &:active {
+    background-color: $blue20;
+  }
+
+  &:disabled {
+    color: $grey20;
+    background-color: $grey10;
+    border-bottom-color: transparent;
+  }
+}
+
+.PrimaryOutline {
+  color: $grey20;
+  border: 1px solid $grey20;
+
+  &:active {
+    color: $grey10;
+    background-color: $grey20;
+  }
+
+  &:disabled {
+    color: $grey20;
+    background-color: $grey10;
+    border-bottom-color: transparent;
+  }
+}

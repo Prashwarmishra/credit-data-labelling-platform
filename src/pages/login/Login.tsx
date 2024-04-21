@@ -4,10 +4,16 @@ import { useState } from "react";
 import Button from "../../components/ui/Button/Button";
 import Input from "../../components/ui/Input/Input";
 import Typography from "../../components/ui/Typography/Typography";
+import LOCAL_STORAGE from "../../constants/localStorage";
 import Role from "../../constants/role";
 import { TypographyVariantTypes } from "../../primitives/TypographyTypes";
+import authenticateUser from "../../utils/authentication";
 import { validateEmail, validatePassword } from "../../utils/validation";
 import s from "./Login.module.scss";
+
+import { Navigate, useNavigate } from "react-router-dom";
+import REDIRECTION_ROUTES from "../../constants/redirectionRoutes";
+import useAuth from "../../hooks/useAuth";
 
 const initValue = {
   value: "",
@@ -19,6 +25,10 @@ const Login = () => {
   const [email, setEmail] = useState({ ...initValue });
   const [password, setPassword] = useState({ ...initValue });
   const [selectedRole, setSelectedRole] = useState(Role.Labeler);
+
+  // custom hooks
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   const renderRoles = () => {
     return (
@@ -63,9 +73,24 @@ const Login = () => {
 
   const handleLogin = () => {
     if (validate()) {
-      // start authentication
+      const user = authenticateUser(email.value, password.value, selectedRole);
+
+      if (user) {
+        localStorage.setItem(
+          LOCAL_STORAGE.userCredentials,
+          JSON.stringify(user)
+        );
+        navigate(REDIRECTION_ROUTES.listing);
+      } else {
+        // @todo: error handling
+      }
     }
   };
+
+  if (isAuthenticated) {
+    // @todo: handle redirection properly
+    return <Navigate to={REDIRECTION_ROUTES.listing} />;
+  }
 
   return (
     <div className={s.root}>

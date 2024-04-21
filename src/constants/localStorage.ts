@@ -1,5 +1,5 @@
 const LOCAL_STORAGE = {
-  isAuthenticated: "is_authenticated",
+  userCredentials: "user_credentials",
 };
 
 export default LOCAL_STORAGE;

@@ -1,19 +1,20 @@
 import { faCircle, faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Button from "../../components/ui/Button/Button";
 import Input from "../../components/ui/Input/Input";
 import Typography from "../../components/ui/Typography/Typography";
 import LOCAL_STORAGE from "../../constants/localStorage";
+import REDIRECTION_ROUTES from "../../constants/redirectionRoutes";
 import Role from "../../constants/role";
+import useAuth from "../../hooks/useAuth";
 import { TypographyVariantTypes } from "../../primitives/TypographyTypes";
 import authenticateUser from "../../utils/authentication";
 import { validateEmail, validatePassword } from "../../utils/validation";
 import s from "./Login.module.scss";
-
-import { Navigate, useNavigate } from "react-router-dom";
-import REDIRECTION_ROUTES from "../../constants/redirectionRoutes";
-import useAuth from "../../hooks/useAuth";
 
 const initValue = {
   value: "",
@@ -82,7 +83,7 @@ const Login = () => {
         );
         navigate(REDIRECTION_ROUTES.listing);
       } else {
-        // @todo: error handling
+        toast.error("Invalid username or password");
       }
     }
   };
@@ -133,6 +134,8 @@ const Login = () => {
           <Button label="Login" onClick={handleLogin} />
         </div>
       </div>
+
+      <ToastContainer autoClose={1000} />
     </div>
   );
 };

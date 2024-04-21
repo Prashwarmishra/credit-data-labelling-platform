@@ -15,7 +15,7 @@ const Typography = ({
   customStyle,
   label,
 }: TypographyProps) => {
-  const classValue = classNames(s[variant], {});
+  const classValue = classNames(s[variant], s.typography);
   return (
     <div className={s.root}>
       {

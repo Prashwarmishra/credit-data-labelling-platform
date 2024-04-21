@@ -38,6 +38,7 @@ const Button = (props: ButtonProps) => {
         disabled={isDisabled}
         className={classNames(s.btn, s[variant], s[size])}
         style={customStyle}
+        onClick={onClick}
       >
         {isLoading ? (
           <div>Loading</div>

@@ -40,13 +40,15 @@ const Input = (props: InputProps) => {
         {...propsToFwd}
       />
 
-      {hasError && errorMessage && (
-        <Typography
-          label={errorMessage}
-          customStyle={{ color: "red", paddingBottom: 6, paddingLeft: 6 }}
-          variant={TypographyVariantTypes.Small}
-        />
-      )}
+      <div className={s.errorMessage}>
+        {hasError && errorMessage && (
+          <Typography
+            label={errorMessage}
+            customStyle={{ color: "red" }}
+            variant={TypographyVariantTypes.Small}
+          />
+        )}
+      </div>
     </div>
   );
 };

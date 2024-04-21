@@ -6,6 +6,7 @@ import Input from "../../components/ui/Input/Input";
 import Typography from "../../components/ui/Typography/Typography";
 import Role from "../../constants/role";
 import { TypographyVariantTypes } from "../../primitives/TypographyTypes";
+import { validateEmail, validatePassword } from "../../utils/validation";
 import s from "./Login.module.scss";
 
 const initValue = {
@@ -23,7 +24,11 @@ const Login = () => {
     return (
       <div className={s.rolesOptions}>
         {Object.keys(Role).map((role) => (
-          <div className={s.role} onClick={() => setSelectedRole(role as Role)}>
+          <div
+            className={s.role}
+            onClick={() => setSelectedRole(role as Role)}
+            key={role}
+          >
             <FontAwesomeIcon
               icon={role === selectedRole ? faCircleCheck : faCircle}
               size="sm"
@@ -35,17 +40,39 @@ const Login = () => {
     );
   };
 
-  const handleLogin = () => {};
+  const validate = () => {
+    let isValid = true;
+    const emailValidation = validateEmail(email.value);
+    if (!emailValidation.isValid) {
+      isValid = false;
+    }
+    setEmail({
+      ...email,
+      error: emailValidation.errorMessage,
+    });
+    const passwordValidation = validatePassword(password.value);
+    if (!passwordValidation.isValid) {
+      isValid = false;
+    }
+    setPassword({
+      ...password,
+      error: passwordValidation.errorMessage,
+    });
+    return isValid;
+  };
+
+  const handleLogin = () => {
+    if (validate()) {
+      // start authentication
+    }
+  };
 
   return (
     <div className={s.root}>
       <div className={s.login}>
         <header className={s.header}>
           <img src="/credit.jpeg" />
-          <Typography
-            variant={TypographyVariantTypes.H1}
-            label="Login to continue"
-          />
+          <Typography variant={TypographyVariantTypes.H2} label="Login" />
         </header>
 
         <div className={s.form}>

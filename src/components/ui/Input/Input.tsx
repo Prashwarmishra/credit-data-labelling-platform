@@ -1,11 +1,15 @@
 import React from "react";
 
+import { TypographyVariantTypes } from "../../../primitives/TypographyTypes";
+import Typography from "../Typography/Typography";
 import s from "./Input.module.scss";
 
 interface InputProps extends React.HTMLProps<HTMLInputElement> {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   type?: string;
   customStyle?: React.CSSProperties;
+  hasError?: boolean;
+  errorMessage?: string;
 }
 
 const Input = (props: InputProps) => {
@@ -17,6 +21,8 @@ const Input = (props: InputProps) => {
     customStyle,
     onChange,
     type,
+    hasError,
+    errorMessage,
     ...propsToFwd
   } = props;
 
@@ -33,6 +39,14 @@ const Input = (props: InputProps) => {
         style={customStyle}
         {...propsToFwd}
       />
+
+      {hasError && errorMessage && (
+        <Typography
+          label={errorMessage}
+          customStyle={{ color: "red", paddingBottom: 6, paddingLeft: 6 }}
+          variant={TypographyVariantTypes.Small}
+        />
+      )}
     </div>
   );
 };

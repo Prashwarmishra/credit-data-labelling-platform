@@ -6,6 +6,8 @@ import Error from "./pages/error/Error";
 import Listing from "./pages/listing/Listing";
 import Login from "./pages/login/Login";
 
+import s from "./App.module.scss";
+
 const router = createBrowserRouter([
   {
     path: REDIRECTION_ROUTES.login,
@@ -31,7 +33,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <div className={s.root}>
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;

@@ -90,7 +90,7 @@ const Login = () => {
 
   if (isAuthenticated) {
     // @todo: handle redirection properly
-    return <Navigate to={REDIRECTION_ROUTES.listing} />;
+    return <Navigate to={REDIRECTION_ROUTES.home} />;
   }
 
   return (

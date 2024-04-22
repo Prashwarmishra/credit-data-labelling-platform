@@ -1,8 +1,11 @@
 const REDIRECTION_ROUTES = {
   login: "/login",
   home: "/",
-  listing: "/details",
-  details: "/entity-details/:entityId",
+  listing: "/listing",
+  details: "/listing/:entityId",
+  inbox: "/inbox",
+  help: "/help",
+  settings: "/settings",
 };
 
 export default REDIRECTION_ROUTES;

@@ -1,0 +1,8 @@
+@import "/src/styles/colors.scss";
+
+.root {
+  border-bottom: 1px solid $grey10;
+}
+.root:hover {
+  background-color: $blue0;
+}

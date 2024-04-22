@@ -1,0 +1,14 @@
+@import "/src/styles/colors.scss";
+
+.root {
+  border-collapse: collapse;
+  margin: 20px 0px;
+  min-width: 60vw;
+  border: 1px solid $grey10;
+  border-radius: 12px;
+
+  .headers {
+    text-align: start;
+    border-bottom: 1px solid $grey10;
+  }
+}

@@ -23,6 +23,7 @@ const Breadcrumb = () => {
                 color: "#0052cc",
                 textDecoration: "none",
                 paddingRight: 4,
+                textTransform: "capitalize",
               }}
             >
               {item}

@@ -8,16 +8,18 @@ type TypographyProps = {
   variant?: TypographyVariantTypes;
   customStyle?: React.CSSProperties;
   label: string;
+  onClick?: (...args: any) => void;
 };
 
 const Typography = ({
   variant = TypographyVariantTypes.Medium,
   customStyle,
   label,
+  onClick,
 }: TypographyProps) => {
   const classValue = classNames(s[variant], s.typography);
   return (
-    <div className={s.root}>
+    <div className={s.root} onClick={onClick}>
       {
         {
           [TypographyVariantTypes.H1]: (

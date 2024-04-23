@@ -8,9 +8,10 @@ import s from "./Cell.module.scss";
 type CellProps = {
   cellKey: string;
   cellData: any;
+  onCellDataChange?: (cellData: any) => void;
 };
 
-const Cell = ({ cellKey, cellData }: CellProps) => {
+const Cell = ({ cellKey, cellData, onCellDataChange }: CellProps) => {
   const handleClick = () => {};
 
   const renderCellData = (value: any) => {
@@ -34,6 +35,7 @@ const Cell = ({ cellKey, cellData }: CellProps) => {
         <FontAwesomeIcon
           icon={cellData === true ? faFlag : faFlagRegular}
           color={cellData === true ? "red" : "lightGrey"}
+          onClick={() => onCellDataChange && onCellDataChange(!cellData)}
         />
       ) : (
         <Typography label={renderCellData(cellData)} />

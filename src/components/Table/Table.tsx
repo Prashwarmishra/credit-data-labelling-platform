@@ -30,10 +30,13 @@ const Table = ({ headers, data, setData }: TableProps) => {
 
       {data.map((row, index) => (
         <Row
+          key={index}
           headers={headers}
           rowData={row}
           setModalData={setModalData}
-          key={index}
+          onRowDataChange={(rowData: RowType) =>
+            handleRowDataChange(rowData, index)
+          }
         />
       ))}
     </table>

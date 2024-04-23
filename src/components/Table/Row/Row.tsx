@@ -10,14 +10,22 @@ type RowProps = {
   headers: HeaderType;
   rowData: RowType;
   setModalData: (data: RowType) => void;
+  onRowDataChange: (data: RowType) => void;
   isEditable?: boolean;
 };
 
-const Row = ({ headers, rowData, setModalData, isEditable }: RowProps) => {
+const Row = ({
+  headers,
+  rowData,
+  setModalData,
+  onRowDataChange,
+  isEditable,
+}: RowProps) => {
   const isFlagged = rowData["isFlagged"];
-  //   const handleCellDataChange = (key: string, data: string) => {
-  //     setRowData({ ...rowData, [key]: data });
-  //   };
+
+  const handleCellDataChange = (key: string, data: any) => {
+    onRowDataChange({ ...rowData, [key]: data });
+  };
 
   return (
     <tr
@@ -30,17 +38,13 @@ const Row = ({ headers, rowData, setModalData, isEditable }: RowProps) => {
             key={i}
             cellKey={cell}
             cellData={rowData[cell]}
-            // setCellData={(item) => handleCellDataChange(cell, item)}
+            onCellDataChange={(newCellData) =>
+              handleCellDataChange(cell, newCellData)
+            }
           />
         );
       })}
-      {isEditable && (
-        <Cell
-          cellKey=""
-          cellData="Edit"
-          // setCellData={(item) => handleCellDataChange(cell, item)}
-        />
-      )}
+      {isEditable && <Cell cellKey="" cellData="Edit" />}
     </tr>
   );
 };

@@ -2,7 +2,7 @@
 
 .root {
   border-collapse: collapse;
-  margin: 20px 0px;
+  margin-top: 20px;
   // min-width: 60vw;
   border: 1px solid $grey10;
   border-radius: 12px;
@@ -10,5 +10,22 @@
   .headers {
     text-align: start;
     border-bottom: 1px solid $grey10;
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid $grey10;
+  border-top: 0px;
+  .pageNumber {
+    color: $grey20;
+  }
+  .buttonGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
   }
 }

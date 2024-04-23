@@ -10,16 +10,18 @@ type RowProps = {
   headers: HeaderType;
   rowData: RowType;
   setModalData: (data: RowType) => void;
-  onRowDataChange: (data: RowType) => void;
   isEditable?: boolean;
+  onRowDataChange: (data: RowType) => void;
+  onRedirectionClick?: (data: RowType) => void;
 };
 
 const Row = ({
   headers,
   rowData,
   setModalData,
-  onRowDataChange,
   isEditable,
+  onRowDataChange,
+  onRedirectionClick,
 }: RowProps) => {
   const isFlagged = rowData["isFlagged"];
 
@@ -41,10 +43,12 @@ const Row = ({
             onCellDataChange={(newCellData) =>
               handleCellDataChange(cell, newCellData)
             }
+            onRedirectionClick={() =>
+              onRedirectionClick && onRedirectionClick(rowData)
+            }
           />
         );
       })}
-      {isEditable && <Cell cellKey="" cellData="Edit" />}
     </tr>
   );
 };

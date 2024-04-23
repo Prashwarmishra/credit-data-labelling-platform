@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header, { HeaderType } from "./Header/Header";
 import Row, { RowType } from "./Row/Row";
 
@@ -8,16 +9,35 @@ export type TableProps = {
   headers: HeaderType;
   data: RowType[];
   setData: (data: RowType[]) => void;
+  rowClickRedirectionUrl?: string;
 };
 
-const Table = ({ headers, data, setData }: TableProps) => {
+const Table = ({
+  headers,
+  data,
+  setData,
+  rowClickRedirectionUrl,
+}: TableProps) => {
   // state
   const [modalData, setModalData] = useState<RowType>();
+
+  // custom hooks
+  const navigate = useNavigate();
+
+  if (rowClickRedirectionUrl) {
+    headers = { ...headers, redirection: "" };
+  }
 
   const handleRowDataChange = (rowData: RowType, index: number) => {
     const newData = [...data];
     newData[index] = rowData;
     setData(newData);
+  };
+
+  const onRedirectionClick = (rowData: RowType) => {
+    if (rowClickRedirectionUrl) {
+      navigate(`${rowClickRedirectionUrl}/${rowData.id}`);
+    }
   };
 
   return (
@@ -37,6 +57,7 @@ const Table = ({ headers, data, setData }: TableProps) => {
           onRowDataChange={(rowData: RowType) =>
             handleRowDataChange(rowData, index)
           }
+          onRedirectionClick={(rowData: RowType) => onRedirectionClick(rowData)}
         />
       ))}
     </table>

@@ -7,6 +7,7 @@ export type EntityDetails = {
   updatedOn: string;
   previousChanges: EntityDetails[];
   isFlagged: boolean;
+  isEditable: boolean;
 };
 
 type EntityDetailsType<T extends string> = {

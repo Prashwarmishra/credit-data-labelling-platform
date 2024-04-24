@@ -1,4 +1,7 @@
-import { faFlag as faFlagRegular } from "@fortawesome/free-regular-svg-icons";
+import {
+  faEdit,
+  faFlag as faFlagRegular,
+} from "@fortawesome/free-regular-svg-icons";
 import { faFlag, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dayjs from "dayjs";
@@ -95,8 +98,17 @@ const Cell = ({
       return (
         <FontAwesomeIcon
           icon={faLocationArrow}
-          color="lightGrey"
-          onClick={(e) => onRedirectionClick && onRedirectionClick()}
+          color="grey"
+          onClick={() => onRedirectionClick && onRedirectionClick()}
+          style={{ cursor: "pointer" }}
+        />
+      );
+    } else if (cellKey === "isEditable") {
+      return (
+        <FontAwesomeIcon
+          icon={faEdit}
+          color="grey"
+          onClick={() => onRedirectionClick && onRedirectionClick()}
           style={{ cursor: "pointer" }}
         />
       );

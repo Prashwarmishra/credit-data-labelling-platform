@@ -12,7 +12,10 @@ type HeaderProps = {
 const Header = ({ headerData }: HeaderProps) => {
   return (
     <th className={s.root}>
-      <Typography label={headerData} />
+      <Typography
+        label={headerData}
+        customStyle={{ color: "rgb(46, 45, 45)" }}
+      />
     </th>
   );
 };

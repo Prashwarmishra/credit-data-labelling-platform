@@ -8,6 +8,7 @@ export const dummyEntityDetails: EntityDetails = {
   updatedOn: "2024-04-24T10:42:02.712Z",
   previousChanges: [],
   isFlagged: false,
+  isEditable: true,
 };
 
 const entitySectionData = [
@@ -39,6 +40,7 @@ export const entityHeaders = {
   recentEditor: "Recent Editor",
   updatedOn: "Updated On",
   previousChanges: "Previous Changes",
+  isEditable: "",
 };
 
 export const entityData: EntityDetailsParent = {

@@ -4,5 +4,6 @@ export enum TypographyVariantTypes {
   H3 = "h3",
   Small = "small",
   Medium = "medium",
+  Span = "span",
   Big = "big",
 }

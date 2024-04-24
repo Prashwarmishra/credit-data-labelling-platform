@@ -68,7 +68,6 @@ const Sidebar = () => {
     </NavLink>
   );
 
-  console.log("userProfile", userProfile);
   return (
     <div className={s.root}>
       <div className={s.tabs}>{pages.map((page) => renderTabs(page))}</div>

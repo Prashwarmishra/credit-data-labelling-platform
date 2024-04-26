@@ -1,7 +1,10 @@
 import { faFlag as faFlagRegular } from "@fortawesome/free-regular-svg-icons";
 import { faFlag, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import dayjs from "dayjs";
+import { Tooltip } from "react-tooltip";
+
+import { TypographyVariantTypes } from "../../../../primitives/TypographyTypes";
 import Typography from "../../../ui/Typography/Typography";
 import s from "./Cell.module.scss";
 
@@ -26,15 +29,57 @@ const Cell = ({
     }
   };
 
-  const renderCellData = (value: any) => {
-    if (Array.isArray(value) && value.length) {
-      let out = value[0]?.toString();
-      if (value.length > 1) {
-        out += ` +${value.length - 1}`;
-      }
-      return out;
+  const renderText = (label: any = "-") => {
+    return (
+      <Typography label={label.toString()} customStyle={{ minWidth: 200 }} />
+    );
+  };
+
+  const getArrayToolTipData = (value: string[]) => {
+    let out = "";
+    value.forEach((item: string) => (out += `${item.toString()}, `));
+    return out.substring(0, out.length - 2);
+  };
+
+  const renderArray = (value: string[]) => {
+    let out = value[0]?.toString();
+    return (
+      <div
+        data-tooltip-id="my-tooltip"
+        data-tooltip-content={getArrayToolTipData(value)}
+      >
+        <Typography label={out} variant={TypographyVariantTypes.Span} />
+        {value.length > 1 && (
+          <Typography
+            label={` + ${+value.length - 1}`}
+            variant={TypographyVariantTypes.Span}
+            customStyle={{ color: "blue" }}
+          />
+        )}
+        <Tooltip id="my-tooltip" />
+      </div>
+    );
+  };
+
+  const renderCellData = () => {
+    const value = cellData;
+    if (!value) {
+      return renderText(value);
     }
-    return value?.toString();
+    if (typeof value === "object") {
+      if (Array.isArray(value) && value.length) {
+        return value.length > 1
+          ? renderArray(cellData)
+          : renderText(value[0].toString());
+      } else if (cellKey === "recentEditor") {
+        return renderText(value.fullName);
+      }
+      return renderText("-");
+    } else if (cellKey === "updatedOn") {
+      return renderText(dayjs(value).format("DD, MMM, YYYY"));
+    } else {
+      return renderText(value);
+    }
   };
 
   const identifyCellDataTypeAndRender = () => {
@@ -56,20 +101,11 @@ const Cell = ({
         />
       );
     }
-    return (
-      <Typography
-        label={renderCellData(cellData)}
-        customStyle={{ minWidth: 200 }}
-      />
-    );
+    return renderCellData();
   };
 
   return (
-    <td
-      className={s.root}
-      //   style={{ background: "white", height: 200, width: 200 }}
-      onClick={handleClick}
-    >
+    <td className={s.root} onClick={handleClick}>
       {identifyCellDataTypeAndRender()}
     </td>
   );

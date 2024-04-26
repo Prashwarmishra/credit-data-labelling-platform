@@ -1,27 +1,30 @@
 import Table from "../../components/Table/Table";
 import Typography from "../../components/ui/Typography/Typography";
-import REDIRECTION_ROUTES from "../../constants/redirectionRoutes";
-import { listingData, listingHeaders } from "../../data/listing";
+import { entityData, entityHeaders } from "../../data/entityDetails";
 import useFetchData from "../../hooks/useFetchData";
 import { TypographyVariantTypes } from "../../primitives/TypographyTypes";
 
-const Listing = () => {
+const EntityDetails = () => {
   // custom hooks
-  const { data, setData, currentPage, totalPages } = useFetchData(listingData);
+  const { data, setData, currentPage, totalPages } = useFetchData(
+    entityData.overview
+  );
 
   return (
     <div>
-      <Typography label="Entity listing" variant={TypographyVariantTypes.H2} />
+      <Typography
+        label="Tesla India corp."
+        variant={TypographyVariantTypes.H2}
+      />
       <Table
-        headers={listingHeaders}
+        headers={entityHeaders}
         data={data}
         setData={setData}
         currentPage={currentPage}
         totalPages={totalPages}
-        rowClickRedirectionUrl={REDIRECTION_ROUTES.listing}
       />
     </div>
   );
 };
 
-export default Listing;
+export default EntityDetails;

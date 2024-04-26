@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import REDIRECTION_ROUTES from "../../constants/redirectionRoutes";
-import Details from "../../pages/details/Details";
+import EntityDetails from "../../pages/entityDetails/EntityDetails";
 import Error from "../../pages/error/Error";
 import Help from "../../pages/help/Help";
 import Home from "../../pages/home/Home";
@@ -26,7 +26,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: REDIRECTION_ROUTES.details,
-        element: <Details />,
+        element: <EntityDetails />,
       },
       {
         path: REDIRECTION_ROUTES.inbox,

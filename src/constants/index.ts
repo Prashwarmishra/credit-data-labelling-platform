@@ -1,1 +1,1 @@
-export const TABLE_THRESHOLD = 5;
+export const TABLE_THRESHOLD = 10;

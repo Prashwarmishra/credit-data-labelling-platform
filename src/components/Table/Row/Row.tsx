@@ -9,7 +9,7 @@ export interface RowType {
 type RowProps = {
   headers: HeaderType;
   rowData: RowType;
-  setModalData: (data: RowType) => void;
+  setModalData: () => void;
   isEditable?: boolean;
   onRowDataChange: (data: RowType) => void;
   onRedirectionClick?: (data: RowType) => void;
@@ -29,6 +29,19 @@ const Row = ({
     onRowDataChange({ ...rowData, [key]: data });
   };
 
+  const handleCellClick = (cellKey: string, cellData: any) => {
+    if (cellKey === "isFlagged") {
+      handleCellDataChange(cellKey, !cellData);
+    } else if (
+      cellKey === "redirection" &&
+      typeof onRedirectionClick === "function"
+    ) {
+      onRedirectionClick(rowData);
+    } else if (cellKey === "isEditable") {
+      setModalData();
+    }
+  };
+
   return (
     <tr
       className={s.root}
@@ -40,12 +53,7 @@ const Row = ({
             key={i}
             cellKey={cell}
             cellData={rowData[cell]}
-            onCellDataChange={(newCellData) =>
-              handleCellDataChange(cell, newCellData)
-            }
-            onRedirectionClick={() =>
-              onRedirectionClick && onRedirectionClick(rowData)
-            }
+            onCellClick={() => handleCellClick(cell, rowData[cell])}
           />
         );
       })}

@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Header, { HeaderType } from "./Header/Header";
 import Row, { RowType } from "./Row/Row";
 
+import { toast } from "react-toastify";
+import { INIT_MODAL_DATA_VALUE } from "../../constants";
 import {
   ButtonSizesType,
   ButtonVariantsType,
@@ -10,6 +12,7 @@ import {
 import { TypographyVariantTypes } from "../../primitives/TypographyTypes";
 import Button from "../ui/Button/Button";
 import Typography from "../ui/Typography/Typography";
+import ActionModal from "./ActionModal/ActionModal";
 import s from "./Table.module.scss";
 
 export type TableProps = {
@@ -21,6 +24,11 @@ export type TableProps = {
   rowClickRedirectionUrl?: string;
 };
 
+type ModalDataType = {
+  data: RowType | null;
+  index: number;
+};
+
 const Table = ({
   headers,
   data,
@@ -30,7 +38,9 @@ const Table = ({
   rowClickRedirectionUrl,
 }: TableProps) => {
   // state
-  const [modalData, setModalData] = useState<RowType>();
+  const [modalData, setModalData] = useState<ModalDataType>({
+    ...INIT_MODAL_DATA_VALUE,
+  });
 
   // custom hooks
   const navigate = useNavigate();
@@ -62,6 +72,14 @@ const Table = ({
     });
   };
 
+  const handleModalDataChange = (newRowData: RowType) => {
+    const newData = [...data];
+    newData[modalData.index] = newRowData;
+    setData(newData);
+    setModalData({ ...INIT_MODAL_DATA_VALUE });
+    toast.success("Data updated successfully");
+  };
+
   return (
     <>
       <table className={s.root}>
@@ -76,7 +94,12 @@ const Table = ({
             key={index}
             headers={headers}
             rowData={row}
-            setModalData={setModalData}
+            setModalData={() =>
+              setModalData({
+                data: row,
+                index,
+              })
+            }
             onRowDataChange={(rowData: RowType) =>
               handleRowDataChange(rowData, index)
             }
@@ -111,6 +134,12 @@ const Table = ({
           />
         </div>
       </div>
+
+      <ActionModal
+        data={modalData.data}
+        onClose={() => setModalData({ ...INIT_MODAL_DATA_VALUE })}
+        onDataChange={handleModalDataChange}
+      />
     </>
   );
 };

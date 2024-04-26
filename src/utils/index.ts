@@ -6,3 +6,11 @@ export const getPaginatedData = (data: any[], page: number) => {
     totalPages: Math.ceil(data.length / TABLE_THRESHOLD),
   };
 };
+
+export const getDeepCopy = (data: any, keysToBeDeleted: string[] = []) => {
+  const newobj = JSON.parse(JSON.stringify(data));
+  keysToBeDeleted.forEach((key) => {
+    delete newobj[key];
+  });
+  return newobj;
+};

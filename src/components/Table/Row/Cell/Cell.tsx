@@ -14,24 +14,18 @@ import s from "./Cell.module.scss";
 type CellProps = {
   cellKey: string;
   cellData: any;
-  onCellDataChange?: (cellData: any) => void;
-  onRedirectionClick?: () => void;
+  onCellClick: () => void;
+  // onCellDataChange?: (cellData: any) => void;
+  // onRedirectionClick?: () => void;
 };
 
 const Cell = ({
   cellKey,
   cellData,
-  onCellDataChange,
-  onRedirectionClick,
-}: CellProps) => {
-  const handleClick = () => {};
-
-  const handleCellClick = () => {
-    if (onCellDataChange) {
-      onCellDataChange(!cellData);
-    }
-  };
-
+  onCellClick,
+}: // onCellDataChange,
+// onRedirectionClick,
+CellProps) => {
   const renderText = (label: any = "-") => {
     return (
       <Typography label={label.toString()} customStyle={{ minWidth: 200 }} />
@@ -91,7 +85,6 @@ const Cell = ({
         <FontAwesomeIcon
           icon={cellData === true ? faFlag : faFlagRegular}
           color={cellData === true ? "red" : "lightGrey"}
-          onClick={handleCellClick}
         />
       );
     } else if (cellKey === "redirection") {
@@ -99,7 +92,6 @@ const Cell = ({
         <FontAwesomeIcon
           icon={faLocationArrow}
           color="grey"
-          onClick={() => onRedirectionClick && onRedirectionClick()}
           style={{ cursor: "pointer" }}
         />
       );
@@ -108,7 +100,6 @@ const Cell = ({
         <FontAwesomeIcon
           icon={faEdit}
           color="grey"
-          onClick={() => onRedirectionClick && onRedirectionClick()}
           style={{ cursor: "pointer" }}
         />
       );
@@ -117,7 +108,7 @@ const Cell = ({
   };
 
   return (
-    <td className={s.root} onClick={handleClick}>
+    <td className={s.root} onClick={onCellClick}>
       {identifyCellDataTypeAndRender()}
     </td>
   );

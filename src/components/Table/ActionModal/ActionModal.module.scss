@@ -1,0 +1,14 @@
+.root {
+  padding: 20px 40px;
+  width: 380px;
+
+  .inputContainer {
+    padding: 10px 0px;
+  }
+
+  .buttonContainer {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+  }
+}

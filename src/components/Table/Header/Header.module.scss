@@ -6,3 +6,11 @@
   background-color: $grey0;
   font-size: 14px;
 }
+
+.root:first-child {
+  border-top-left-radius: 8px;
+}
+
+.root:last-child {
+  border-top-right-radius: 8px;
+}

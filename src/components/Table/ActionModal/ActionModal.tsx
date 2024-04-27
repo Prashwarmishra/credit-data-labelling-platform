@@ -164,7 +164,7 @@ const ActionModal = ({ data, onClose, onDataChange }: ActionModalProps) => {
           <Button label="Submit" onClick={handleSubmit} />
           <Button
             label="Cancel"
-            onClick={onClose}
+            onClick={handleClose}
             variant={ButtonVariantsType.PrimaryOutline}
           />
         </div>

@@ -82,32 +82,34 @@ const Table = ({
   return (
     <>
       <table className={s.root}>
-        <tr className={s.headers}>
-          {Object.keys(headers).map((row, index) => (
-            <Header headerData={headers[row]} key={index} />
-          ))}
-        </tr>
+        <tbody>
+          <tr className={s.headers}>
+            {Object.keys(headers).map((row, index) => (
+              <Header headerData={headers[row]} key={index} />
+            ))}
+          </tr>
 
-        {data.map((row, index) => (
-          <Row
-            key={index}
-            headers={headers}
-            rowData={row}
-            setModalData={() =>
-              setModalData({
-                data: row,
-                index,
-              })
-            }
-            setViewOnlyModalDetails={setViewOnlyModalDetails}
-            onRowDataChange={(rowData: RowType) =>
-              handleRowDataChange(rowData, index)
-            }
-            onRedirectionClick={(rowData: RowType) =>
-              onRedirectionClick(rowData)
-            }
-          />
-        ))}
+          {data.map((row, index) => (
+            <Row
+              key={index}
+              headers={headers}
+              rowData={row}
+              setModalData={() =>
+                setModalData({
+                  data: row,
+                  index,
+                })
+              }
+              setViewOnlyModalDetails={setViewOnlyModalDetails}
+              onRowDataChange={(rowData: RowType) =>
+                handleRowDataChange(rowData, index)
+              }
+              onRedirectionClick={(rowData: RowType) =>
+                onRedirectionClick(rowData)
+              }
+            />
+          ))}
+        </tbody>
       </table>
       <div className={s.controls}>
         <div className={s.pageNumber}>

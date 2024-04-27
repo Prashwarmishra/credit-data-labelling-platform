@@ -3,13 +3,15 @@
 .root {
   border-collapse: collapse;
   margin-top: 20px;
-  // min-width: 60vw;
   border: 1px solid $grey10;
-  border-radius: 12px;
+  border-style: hidden;
+  box-shadow: 0 0 0 1px $grey10;
+  border-radius: 8px 8px 0 0;
 
   .headers {
     text-align: start;
     border-bottom: 1px solid $grey10;
+    border-radius: 12px;
   }
 }
 
@@ -20,6 +22,8 @@
   padding: 8px 10px;
   border: 1px solid $grey10;
   border-top: 0px;
+  border-radius: 0 0 8px 8px;
+  margin: 0 -1px;
   .pageNumber {
     color: $grey20;
   }

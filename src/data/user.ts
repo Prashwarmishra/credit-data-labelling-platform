@@ -31,7 +31,7 @@ const userData: User[] = [
     email: "Loremipsum@credhive.in",
     firstName: "Lorem",
     lastName: "Ipsum",
-    fullName: "Chirag Sharma",
+    fullName: "Lorem Ipsum",
     role: Role.Admin,
   },
   {

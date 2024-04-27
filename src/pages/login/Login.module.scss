@@ -5,9 +5,12 @@
   justify-content: center;
   align-items: center;
   flex: 1;
+  background: url("../../../public/background.jpeg");
+  height: 100vh;
 
   .login {
     border: 1px solid $grey10;
+    box-shadow: 2px 2px 1px 1px $grey20, 0px 0px 1px 1px $grey20;
     padding: 20px 40px;
     border-radius: 12px;
     width: 320px;

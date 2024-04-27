@@ -1,0 +1,16 @@
+@import "/src/styles/colors.scss";
+
+.root {
+  display: flex;
+  gap: 30px;
+  border-bottom: 1px solid $grey10;
+  .tab {
+    width: 100px;
+    padding: 12px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .activeTab {
+    border-bottom: 2px solid $blue10;
+  }
+}

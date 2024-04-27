@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header, { HeaderType } from "./Header/Header";
 import Row, { RowType } from "./Row/Row";
 
@@ -8,6 +8,7 @@ import {
   INIT_MODAL_DATA_VALUE,
   INIT_VIEW_ONLY_MODAL_VALUE,
 } from "../../constants";
+import usePageChange from "../../hooks/usePageChange";
 import {
   ButtonSizesType,
   ButtonVariantsType,
@@ -52,9 +53,7 @@ const Table = ({
 
   // custom hooks
   const navigate = useNavigate();
-  const { search, pathname } = useLocation();
-
-  const searchParams = useMemo(() => new URLSearchParams(search), [search]);
+  const { handlePageChange } = usePageChange();
 
   if (rowClickRedirectionUrl) {
     headers = { ...headers, redirection: "" };
@@ -70,14 +69,6 @@ const Table = ({
     if (rowClickRedirectionUrl) {
       navigate(`${rowClickRedirectionUrl}/${rowData.id}`);
     }
-  };
-
-  const handlePageChange = (pageNumber: number) => {
-    searchParams.set("page", pageNumber.toString());
-    navigate({
-      pathname,
-      search: searchParams.toString(),
-    });
   };
 
   const handleModalDataChange = (newRowData: RowType) => {

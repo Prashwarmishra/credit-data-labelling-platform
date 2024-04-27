@@ -5,6 +5,7 @@ import { getPaginatedData } from "../utils";
 
 const useFetchData = (results: RowType[]) => {
   // state
+  const [sourceData, setSourceData] = useState(results);
   const [data, setData] = useState<RowType[]>([]);
   const [totalPages, setTotalPages] = useState(0);
 
@@ -15,18 +16,19 @@ const useFetchData = (results: RowType[]) => {
   const currentPage = page ? +page : 1;
 
   const getListingData = () => {
-    const { data, totalPages } = getPaginatedData(results, currentPage);
+    const { data, totalPages } = getPaginatedData(sourceData, currentPage);
     setData(data);
     setTotalPages(totalPages);
   };
 
   useEffect(() => {
     getListingData();
-  }, [search]);
+  }, [search, sourceData]);
 
   return {
     data,
     setData,
+    setSourceData,
     currentPage,
     totalPages,
   };

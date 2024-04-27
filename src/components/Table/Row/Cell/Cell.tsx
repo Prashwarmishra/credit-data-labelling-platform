@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dayjs from "dayjs";
 import { Tooltip } from "react-tooltip";
 
+import { DATE_FORMAT } from "../../../../constants";
 import { TypographyVariantTypes } from "../../../../primitives/TypographyTypes";
 import Typography from "../../../ui/Typography/Typography";
 import s from "./Cell.module.scss";
@@ -15,17 +16,9 @@ type CellProps = {
   cellKey: string;
   cellData: any;
   onCellClick: () => void;
-  // onCellDataChange?: (cellData: any) => void;
-  // onRedirectionClick?: () => void;
 };
 
-const Cell = ({
-  cellKey,
-  cellData,
-  onCellClick,
-}: // onCellDataChange,
-// onRedirectionClick,
-CellProps) => {
+const Cell = ({ cellKey, cellData, onCellClick }: CellProps) => {
   const renderText = (label: any = "-") => {
     return (
       <Typography label={label.toString()} customStyle={{ minWidth: 200 }} />
@@ -36,6 +29,18 @@ CellProps) => {
     let out = "";
     value.forEach((item: string) => (out += `${item.toString()}, `));
     return out.substring(0, out.length - 2);
+  };
+
+  const renderArrayObject = (value: any) => {
+    return value?.length ? (
+      <Typography
+        label={value.length}
+        customStyle={{ color: "blue", textDecoration: "underline" }}
+        variant={TypographyVariantTypes.Small}
+      />
+    ) : (
+      <Typography label="-" />
+    );
   };
 
   const renderArray = (value: string[]) => {
@@ -73,7 +78,7 @@ CellProps) => {
       }
       return renderText("-");
     } else if (cellKey === "updatedOn") {
-      return renderText(dayjs(value).format("DD, MMM, YYYY"));
+      return renderText(dayjs(value).format(DATE_FORMAT));
     } else {
       return renderText(value);
     }
@@ -103,6 +108,8 @@ CellProps) => {
           style={{ cursor: "pointer" }}
         />
       );
+    } else if (cellKey === "previousChanges") {
+      return renderArrayObject(cellData);
     }
     return renderCellData();
   };

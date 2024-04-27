@@ -1,4 +1,5 @@
 import { HeaderType } from "../Header/Header";
+import { ViewOnlyModalDetails } from "../ViewOnlyModal/ViewOnlyModal";
 import Cell from "./Cell/Cell";
 import s from "./Row.module.scss";
 
@@ -13,6 +14,7 @@ type RowProps = {
   isEditable?: boolean;
   onRowDataChange: (data: RowType) => void;
   onRedirectionClick?: (data: RowType) => void;
+  setViewOnlyModalDetails?: (details: ViewOnlyModalDetails) => void;
 };
 
 const Row = ({
@@ -22,6 +24,7 @@ const Row = ({
   isEditable,
   onRowDataChange,
   onRedirectionClick,
+  setViewOnlyModalDetails,
 }: RowProps) => {
   const isFlagged = rowData["isFlagged"];
 
@@ -39,6 +42,16 @@ const Row = ({
       onRedirectionClick(rowData);
     } else if (cellKey === "isEditable") {
       setModalData();
+    } else if (
+      cellKey === "previousChanges" &&
+      cellData?.length &&
+      setViewOnlyModalDetails
+    ) {
+      setViewOnlyModalDetails({
+        title: headers[cellKey],
+        headers,
+        data: cellData,
+      });
     }
   };
 

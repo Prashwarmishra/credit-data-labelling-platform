@@ -4,7 +4,10 @@ import Header, { HeaderType } from "./Header/Header";
 import Row, { RowType } from "./Row/Row";
 
 import { toast } from "react-toastify";
-import { INIT_MODAL_DATA_VALUE } from "../../constants";
+import {
+  INIT_MODAL_DATA_VALUE,
+  INIT_VIEW_ONLY_MODAL_VALUE,
+} from "../../constants";
 import {
   ButtonSizesType,
   ButtonVariantsType,
@@ -14,6 +17,9 @@ import Button from "../ui/Button/Button";
 import Typography from "../ui/Typography/Typography";
 import ActionModal from "./ActionModal/ActionModal";
 import s from "./Table.module.scss";
+import ViewOnlyModal, {
+  ViewOnlyModalDetails,
+} from "./ViewOnlyModal/ViewOnlyModal";
 
 export type TableProps = {
   headers: HeaderType;
@@ -41,6 +47,8 @@ const Table = ({
   const [modalData, setModalData] = useState<ModalDataType>({
     ...INIT_MODAL_DATA_VALUE,
   });
+  const [viewOnlyModalDetails, setViewOnlyModalDetails] =
+    useState<ViewOnlyModalDetails>({ ...INIT_VIEW_ONLY_MODAL_VALUE });
 
   // custom hooks
   const navigate = useNavigate();
@@ -100,6 +108,7 @@ const Table = ({
                 index,
               })
             }
+            setViewOnlyModalDetails={setViewOnlyModalDetails}
             onRowDataChange={(rowData: RowType) =>
               handleRowDataChange(rowData, index)
             }
@@ -139,6 +148,13 @@ const Table = ({
         data={modalData.data}
         onClose={() => setModalData({ ...INIT_MODAL_DATA_VALUE })}
         onDataChange={handleModalDataChange}
+      />
+
+      <ViewOnlyModal
+        modalDetails={viewOnlyModalDetails}
+        onClose={() =>
+          setViewOnlyModalDetails({ ...INIT_VIEW_ONLY_MODAL_VALUE })
+        }
       />
     </>
   );

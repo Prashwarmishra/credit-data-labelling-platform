@@ -1,13 +1,17 @@
 import { User } from "./User";
 
-export type EntityDetails = {
+export interface BasicEntityDetails {
   head: string;
   input: string[];
   recentEditor: User;
   updatedOn: string;
-  previousChanges: EntityDetails[];
+}
+
+export interface EntityDetails extends BasicEntityDetails {
+  previousChanges: BasicEntityDetails[];
   isFlagged: boolean;
-};
+  isEditable: boolean;
+}
 
 type EntityDetailsType<T extends string> = {
   [Key in T]: EntityDetails[];

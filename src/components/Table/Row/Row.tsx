@@ -1,4 +1,5 @@
 import { HeaderType } from "../Header/Header";
+import { ViewOnlyModalDetails } from "../ViewOnlyModal/ViewOnlyModal";
 import Cell from "./Cell/Cell";
 import s from "./Row.module.scss";
 
@@ -9,10 +10,11 @@ export interface RowType {
 type RowProps = {
   headers: HeaderType;
   rowData: RowType;
-  setModalData: (data: RowType) => void;
+  setModalData: () => void;
   isEditable?: boolean;
   onRowDataChange: (data: RowType) => void;
   onRedirectionClick?: (data: RowType) => void;
+  setViewOnlyModalDetails?: (details: ViewOnlyModalDetails) => void;
 };
 
 const Row = ({
@@ -22,11 +24,35 @@ const Row = ({
   isEditable,
   onRowDataChange,
   onRedirectionClick,
+  setViewOnlyModalDetails,
 }: RowProps) => {
   const isFlagged = rowData["isFlagged"];
 
   const handleCellDataChange = (key: string, data: any) => {
     onRowDataChange({ ...rowData, [key]: data });
+  };
+
+  const handleCellClick = (cellKey: string, cellData: any) => {
+    if (cellKey === "isFlagged") {
+      handleCellDataChange(cellKey, !cellData);
+    } else if (
+      cellKey === "redirection" &&
+      typeof onRedirectionClick === "function"
+    ) {
+      onRedirectionClick(rowData);
+    } else if (cellKey === "isEditable") {
+      setModalData();
+    } else if (
+      cellKey === "previousChanges" &&
+      cellData?.length &&
+      setViewOnlyModalDetails
+    ) {
+      setViewOnlyModalDetails({
+        title: headers[cellKey],
+        headers,
+        data: cellData,
+      });
+    }
   };
 
   return (
@@ -40,12 +66,7 @@ const Row = ({
             key={i}
             cellKey={cell}
             cellData={rowData[cell]}
-            onCellDataChange={(newCellData) =>
-              handleCellDataChange(cell, newCellData)
-            }
-            onRedirectionClick={() =>
-              onRedirectionClick && onRedirectionClick(rowData)
-            }
+            onCellClick={() => handleCellClick(cell, rowData[cell])}
           />
         );
       })}

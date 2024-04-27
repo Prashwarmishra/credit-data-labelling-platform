@@ -2,7 +2,7 @@ import { faCircle, faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../../components/ui/Button/Button";
 import Input from "../../components/ui/Input/Input";
@@ -134,8 +134,6 @@ const Login = () => {
           <Button label="Login" onClick={handleLogin} />
         </div>
       </div>
-
-      <ToastContainer autoClose={1000} />
     </div>
   );
 };

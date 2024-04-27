@@ -32,25 +32,23 @@ const Button = (props: ButtonProps) => {
     ...propsToFwd
   } = props;
   return (
-    <div className={s.root}>
-      <button
-        {...propsToFwd}
-        disabled={isDisabled}
-        className={classNames(s.btn, s[variant], s[size])}
-        style={customStyle}
-        onClick={onClick}
-      >
-        {isLoading ? (
-          <div>Loading</div>
-        ) : (
-          <div className={s.button}>
-            {leftIcon && <div className={s.leftIcon}>{leftIcon}</div>}
-            {label && <div className={s.label}>{label}</div>}
-            {rightIcon && <div className={s.rightIcon}>{rightIcon}</div>}
-          </div>
-        )}
-      </button>
-    </div>
+    <button
+      {...propsToFwd}
+      disabled={isDisabled}
+      className={classNames(s.btn, s[variant], s[size])}
+      style={customStyle}
+      onClick={onClick}
+    >
+      {isLoading ? (
+        <div>Loading</div>
+      ) : (
+        <div className={s.button}>
+          {leftIcon && <div className={s.leftIcon}>{leftIcon}</div>}
+          {label && <div className={s.label}>{label}</div>}
+          {rightIcon && <div className={s.rightIcon}>{rightIcon}</div>}
+        </div>
+      )}
+    </button>
   );
 };
 

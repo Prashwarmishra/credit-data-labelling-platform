@@ -1,9 +1,21 @@
+@import "/src/styles/colors.scss";
 .root {
   padding: 20px 40px;
   width: 380px;
 
+  .body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .inputContainer {
     padding: 10px 0px;
+
+    .input {
+      display: flex;
+      gap: 4px;
+    }
   }
 
   .buttonContainer {

@@ -6,7 +6,7 @@ export const dummyEntityDetails: EntityDetails = {
   head: "company-name",
   input: ["Tesla"],
   recentEditor: { ...userData[0] },
-  updatedOn: "2024-04-24T10:42:02.712Z",
+  updatedOn: "2024-04-27T13:49:41.915Z",
   previousChanges: [],
   isFlagged: false,
   isEditable: true,
@@ -24,6 +24,7 @@ const entitySectionData = [
     ...dummyEntityDetails,
     head: "roc",
     input: ["ROC mumbai"],
+    isFlagged: true,
     recentEditor: { ...userData[2] },
   },
   {
@@ -50,6 +51,7 @@ const entitySectionData = [
     head: "authorised-capital",
     input: ["500000000"],
     recentEditor: { ...userData[1] },
+    isFlagged: true,
   },
 ];
 

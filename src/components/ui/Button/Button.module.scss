@@ -12,6 +12,12 @@
   transition: all 0.2s ease-in-out;
   width: fit-content;
   width: 100%;
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .leftIcon {

@@ -63,8 +63,8 @@ const ViewOnlyModal = ({ modalDetails, onClose }: ViewOnlyModalProps) => {
       <div className={s.root}>
         <Typography label={title} variant={TypographyVariantTypes.H2} />
         <div className={s.container}>
-          {data?.map((elem) => (
-            <div className={s.element}>
+          {data?.map((elem, index) => (
+            <div className={s.element} key={index}>
               {Object.keys(elem).map((item) => renderItem(item, elem[item]))}
             </div>
           ))}
